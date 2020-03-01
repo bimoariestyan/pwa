@@ -1,0 +1,22 @@
+{
+    "name": "Gunadarma University",
+    "short_name": "My University",
+    "description": "Gunadarma University PWA",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#ff00bb",
+    "theme_color": "#ff00bb",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "gunadarma.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "gunadarma.png",
+            "sizes": "192x192",
+            "type": "image/jpg"
+        }
+    ]
+}

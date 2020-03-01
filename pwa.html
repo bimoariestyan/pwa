@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PWA</title>
+</head>
+<body>
+    
+<script type="text/javascript">
+function status (response) {
+    if (response.status !== 200) {
+        console.log('Error : ' + response.status);
+        //method reject () akan membuat blok catch terpanggil
+        return Promise.reject(new Error(response.statusText));
+    }else{
+        // mengubah suatu object menjadi promise agar bisa di-then-kan
+        return Promise.resolve(response);
+    }
+}
+
+function json (response){
+    // mengembalikan sebuah promise berupa object javscript
+    // yang  diuabh dari text JSON
+    return response.json();
+}
+
+function error (error){
+    //parameter error berasal dari Promise.reject()
+    console.log('Error : ' + error);
+}
+
+fetch('https://readerapi.codepolitan.com/articles')
+    .then(status)
+    .then(json)
+    .then(function(data){
+        //object /array Javascript dari response.json() masuk lewat data.
+        console.log(data);
+    }).catch(error);
+
+// fetch('https://readerapi.codepolitan.com/articles')
+//     .then(function (response){
+//         if(response.status !== 200) {
+//             console.log('Error : ' + response.status);
+//             // method reject() akan membuat block catch terpanggil
+//             return Promise.reject(new Error(response.statusText));
+//         } else {
+//             // mengubah suatu object menjadi Promise agar bisa "di-then-kan"
+//             return Promise.resolve(response);
+//         }
+//     }).then(function(response) {
+//         // Mengembalikan sebuah promise berupa object/array Javascript
+//         // yang  diubah dari teks ke JSON
+//         return response.json();
+//     }).then(function(data) {
+//         //object/array JAvascript dari response.json() masuk lewat data.
+//         console.log(data);
+//     }).catch(function(error) {
+//         // parameter error berasal dari promise.reject()
+//         console.log('Error : ' + error);
+//     });
+
+// var helloWorld = function(name) {
+//     return new Promise((resolve, reject) => {
+//         if (name === "" || name === undefined || name === null) {
+//             reject("You have to provide the name!");
+//         }else {
+//             var message = "Hello world, " + name;
+//             resolve(message);
+//         }
+//     });
+// };
+
+
+// function addCodepolitan(message) {
+//     return message + " from Codepolitan!";
+// }
+
+// var promises = Promise.all([
+//     helloWorld("bims"),
+//     helloWorld("xxx"),
+//     helloWorld("bims")
+//         .then(function(result){
+//             return result;
+//         })
+//         .then(function(result2) {
+//             var message = addCodepolitan(result2);
+//             return message;
+//         })
+// ]);
+
+// promises.then(function(results) {
+//     console.log(results);
+// })
+// helloWorld("bims")
+//     .then(function(result) {
+//         //logic for prosessing first message here
+//         return result;
+//         // console.log(result);
+//     })
+//     .then(function(result2) {
+//         var message = addCodepolitan(result2);
+//         console.log(message);
+//     })
+//     .catch(function(error) {
+//         console.log(error);
+//     });
+// console.log(helloWorld);
+
+</script>    
+</body>
+</html>
